@@ -2,9 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&display=swap');
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  
-  
+  font-family: 'Montserrat', sans-serif;  
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -14,4 +16,10 @@ body {
 
 .bottom {
   min-height: calc(100vh - 400px);
+}
+
+
+.main-content {
+  width: calc(100vw - 350px);
+  margin-left: 350px;
 }

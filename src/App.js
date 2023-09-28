@@ -19,13 +19,14 @@ function App() {
     <div className="App">
         <div className="container flex flex-row">
 
-          <div className="sidebar min-w-[350px] h-full">
+          <div className="sidebar min-w-[350px] h-full fixed left-0 top-0">
             <div className="flex flex-col w-full h-full">
               <div className="top grow-0 text-center h-[400px] pt-[50px] bg-[#383a45] relative w-full">
                   {/* <h2 className='text-2xl text-center header'>beehive</h2> */}
-                  <img src={Logo} alt="logo" className='mx-auto h-[120px]'/>
+                  <img src={Logo} alt="logo" className='mx-auto h-[100px]'/>
+
                   <div className="absolute py-8 px-4 text-center text-black inset-x-0 shadow-xl -bottom-[20%] h-[250px] aspect-square bg-stone-100 rounded-md w-[70%] mx-auto">
-                      <div className='h-[50px] outline outline-offset-3 outline-red-100 bg-red-200 mx-auto rounded-full aspect-square'>
+                      <div className='h-[50px] my-3 outline outline-offset-3 outline-red-100 bg-red-200 mx-auto rounded-full aspect-square'>
 
                       </div>
                       <h4 className='font-bold'>Rahmi Cooper</h4>
@@ -104,7 +105,7 @@ function App() {
             </div>
           </div>
 
-          <div className="main-content w-full">
+          <div className="main-content w-full ml-[350px] min-w-[1235px]">
               <Header /> 
               <div className='flex flex-row h-screen mt-[80px]'>
                   <div className="basis-3/4 pt-[60px] h-full h-full border-r border-gray-100">
@@ -117,13 +118,26 @@ function App() {
                       </div>
 
                       {/* post-lists */}
-                      <div className="mt-5">
-                       <Post />
+                      <div className="mt-5 pt-5">
+                        <Post />
+                        <Post /> 
+                        <Post /> 
+                        <Post /> 
+                        <Post />
+                        <Post />
                       </div>
                   </div>
 
-                  <div className="basis-1/4 p-[30px]">
+                  <div className="basis-1/4 p-[30px] fixed top-[80px] right-0">
                     <MemberWidget />
+
+                    <div className='flex gap-2 text-[12px] items-center justify-between text-gray-400 my-7 child-hover:text-red-200'>
+                      <a href="#">Home</a>
+                      <a href="#">About Us</a>
+                      <a href="#">FAQs</a>
+                      <a href="#">Blog</a>
+                      <a href="#">Contact</a>
+                    </div>
                   </div>
               </div>
           </div>
