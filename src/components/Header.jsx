@@ -7,7 +7,7 @@ import {BsBag} from "react-icons/bs"
 
 const Header = () => {
   return (
-    <div className='p-2 fixed top-0 z-20 bg-white border-b border-gray-100 grid justify-items-start h-[80px] p-2 w-full'>
+    <div className='p-2 fixed top-0 right-0 z-20 bg-white border-b border-gray-100 grid justify-items-start h-[80px] p-2 min-w-[1235px]'>
          <div className="flex flex-row items-center px-2 justify-between w-full">
             <div className='flex items-center'>
                 < FaSistrix />
