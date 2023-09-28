@@ -11,7 +11,7 @@ const Header = () => {
          <div className="flex flex-row items-center px-2 justify-between w-full">
             <div className='flex items-center'>
                 < FaSistrix />
-                <input type="text" placeholder='search' className='align-left mx-2'/>
+                <input type="text" placeholder='search' className='align-left mx-2 p-2 outline-none text-sm'/>
             </div>
 
             <div className='flex flex-row'>

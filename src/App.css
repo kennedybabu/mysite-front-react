@@ -3,13 +3,15 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  
+  
+}
 
-  .header {
-    font-family: 'Comfortaa', cursive;
-  } 
 
+.header {
+  font-family: 'Comfortaa', cursive;
+} 
 
-  .bottom {
-    min-height: calc(100vh - 400px);
-  }
+.bottom {
+  min-height: calc(100vh - 400px);
 }
