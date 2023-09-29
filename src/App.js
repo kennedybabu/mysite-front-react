@@ -26,7 +26,6 @@ let fetchPosts = async() => {
   let res = await fetch('/blog/')
   let data = await res.json()
   setPosts(data)
-  console.log(data)
 }
   return (
     <div className="App">

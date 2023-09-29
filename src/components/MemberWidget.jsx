@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const MemberWidget = () => {
+
+    let [members,setMembers] = useState([])
 
     let users = [ {
         name: 'Joe', work: 'freelance-developer', 
@@ -42,6 +44,16 @@ const MemberWidget = () => {
       
     ]
 
+    useEffect(() => {
+      fetchMembers()
+    }, [])
+
+    let fetchMembers = async () => {
+      let response = await fetch('/blog/users/')
+      let data = await response.json()
+      setMembers(data)
+    }
+
 
   return (
     <div className='w-[259px] flex flex-col h-[377px] mx-auto bg-[#7c82c305] rounded-md shadow-sm p-[.8rem]'>
@@ -51,13 +63,13 @@ const MemberWidget = () => {
             <small className='cursor-pointer'>Newest</small> | <small className='cursor-pointer'>Active</small> | <small className='cursor-pointer'>Popular</small>
         </div>
         <div className='grow w-full overflow-y-scroll no-scrollbar'>
-            {users.map((user, index) => (
+            {members.map((user, index) => (
                 <div key={index} className='member-widget px-2 my-3 flex flex-row w-full'>
                     <div className='h-[30px] w-[30px] outline outline-offset-3 outline-red-100 bg-red-200 rounded-full aspect-square'>
 
                     </div>
-                    <div className='h-full mx-2 flex items-start justify-center flex-col'>
-                        <a href='#' className='text-sm font-bold hover:underline'>Rahmi Cooper</a>
+                    <div className='h-full mx-4 flex items-start justify-center flex-col'>
+                        <a href='#' className='text-sm font-bold hover:underline'>{user.username}</a>
                         <small className='text-[12px] text-gray-400'>2 hours ago</small>
                     </div>
                 </div>               
