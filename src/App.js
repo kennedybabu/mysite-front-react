@@ -12,9 +12,22 @@ import {LuMessagesSquare} from "react-icons/lu"
 import {PiNewspaperLight} from "react-icons/pi"
 import Post from './components/Post';
 import MemberWidget from './components/MemberWidget';
+import { useEffect, useState } from 'react';
 
 
 function App() {
+let [posts, setPosts] = useState([])
+
+useEffect(() => {
+  fetchPosts()
+}, [])
+
+let fetchPosts = async() => {
+  let res = await fetch('/blog/')
+  let data = await res.json()
+  setPosts(data)
+  console.log(data)
+}
   return (
     <div className="App">
         <div className="container flex flex-row">
@@ -119,12 +132,15 @@ function App() {
 
                       {/* post-lists */}
                       <div className="mt-5 pt-5">
-                        <Post />
+                        {posts.map((post, index) => (
+                            <Post key={index} post={post}/>
+                        ))}
+                        {/* <Post /> */}
+                        {/* <Post /> 
                         <Post /> 
                         <Post /> 
-                        <Post /> 
                         <Post />
-                        <Post />
+                        <Post /> */}
                       </div>
                   </div>
 

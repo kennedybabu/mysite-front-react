@@ -1,13 +1,28 @@
 import React, { useState } from 'react'
 import {AiOutlineMore} from "react-icons/ai"
 import {BiLike} from "react-icons/bi"
+import { formatDistanceToNow } from 'date-fns'
 
-const Post = () => {
+
+
+
+const Post = ({post}) => {
+    // let formatDistanceToNow = require('date-fns/formatDistanceToNow') 
+
+
+    // formatDistanceToNow(new Date(), {
+    //     addSuffix: true
+    // })
+
     let [isCommenting, setIsCommenting] = useState(false)
 
     let commenting = () => {
         setIsCommenting(!isCommenting)
     }
+
+    let formattedDate = formatDistanceToNow(new Date(post.created), {
+        addSuffix: true
+    })
 
   return (
     <div>
@@ -20,9 +35,9 @@ const Post = () => {
                 </div>
                 <AiOutlineMore  className='text-gray-400 cursor-pointer'/>
             </div>
-            <small className='text-[12px] text-gray-400'>23 hours, 48 minutes ago</small>
+            <small className='text-[12px] text-gray-400'>{formattedDate}</small>
             <div className='post-body py-2'>
-                <p className='text-[14px] max-w-[90%]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima reprehenderit consequatur aliquam sequi ut suscipit cum quam accusantium ducimus molestiae.</p>
+                <p className='text-[14px] max-w-[90%]'>{post.body}</p>
             </div>
             <div className='h-[50px] my-2 border-t border-b border-gray-100'>
             <div className="flex flex-row items-center h-full">                              
