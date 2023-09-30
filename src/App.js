@@ -126,7 +126,7 @@ let fetchPosts = async() => {
                           <div className='h-[35px] aspect-square bg-red-100 rounded-full'>
                               
                           </div>
-                          <input type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full' placeholder="What's new, Rahmi?" />
+                          <input type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full outline-none px-4' placeholder="What's new, Rahmi?" />
                       </div>
 
                       {/* post-lists */}

@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
-import {AiOutlineMore} from "react-icons/ai"
+import {AiOutlineMore, AiOutlineDelete} from "react-icons/ai"
 import {BiLike} from "react-icons/bi"
 import { formatDistanceToNow } from 'date-fns'
 import Comment from './Comment'
+import {CiEdit} from "react-icons/ci"
 
 
 
 
 const Post = ({post}) => {
-    // let formatDistanceToNow = require('date-fns/formatDistanceToNow') 
 
-
-    // formatDistanceToNow(new Date(), {
-    //     addSuffix: true
-    // })
+    let id = post.id    
 
     let [isCommenting, setIsCommenting] = useState(false)
+    let [options, setOptions] = useState(false)
 
     let commenting = () => {
         setIsCommenting(!isCommenting)
@@ -24,6 +22,26 @@ const Post = ({post}) => {
     let formattedDate = formatDistanceToNow(new Date(post.created), {
         addSuffix: true
     })
+
+    let viewOptions = () => {
+        setOptions(!options)
+    }
+
+
+    let deletePost = async () => {
+        console.log(post)
+        fetch(`/posts/${id}/delete/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        })
+    }
+
+
+    function display(){
+        console.log(post)
+    }
 
   return (
     <div>
@@ -34,7 +52,19 @@ const Post = ({post}) => {
                     </div>
                     <p className='text-gray-400 text-[14px]'><span className='text-black font-bold'>Rahmi Cooper</span> posted an update</p>
                 </div>
-                <AiOutlineMore  className='text-gray-400 cursor-pointer'/>
+                <div className='relative'>
+                    <AiOutlineMore onClick={viewOptions}  className='relative text-gray-400 cursor-pointer'/>
+                    {
+                        options ? (
+                            <div className='w-44 bg-stone-100 rounded-lg transition border border-gray-100 shadow z-30 absolute -bottom-13 right-1'>
+                                <ul className='py-2 text-sm'>
+                                    <li><a href="#" className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Edit <CiEdit /></a></li>
+                                    <li onClick={deletePost}><a className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Delete <AiOutlineDelete /></a></li>
+                                </ul>
+                            </div>
+                        ): null
+                    }
+                </div>
             </div>
             <small className='text-[12px] text-gray-400'>{formattedDate}</small>
             <div className='post-body py-2'>
@@ -43,13 +73,17 @@ const Post = ({post}) => {
             <div className='h-[50px] my-2 border-t border-b border-gray-100'>
             <div className="flex flex-row items-center h-full">                              
                 <p className='text-[14px] mr-4 flex items-center cursor-pointer text-[#8224E3]'><BiLike /> Like</p>
-                <p className='text-[14px] mx-4 text-[#838daa] cursor-pointer' onClick={commenting}>Comments <span>3</span></p>
+                <p className='text-[14px] mx-4 text-[#838daa] cursor-pointer' onClick={commenting}>Comments <span className='p-1 border border-gray-200 rounded-full aspect-square px-[10px]'>{post?.comments.length}</span></p>
                 <p className='text-[14px] mx-4 text-[#838daa] cursor-pointer'>Share +</p>
             </div>
             </div>
             
             <div className="py-4">
-                <Comment />
+                {
+                    post.comments.map((comment, index) => (
+                        <Comment key={index} comment={comment}/>
+                    ))
+                }
             </div>
 
             <div>
