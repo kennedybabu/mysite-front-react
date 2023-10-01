@@ -17,6 +17,12 @@ import axios from "axios"
 const HomePage = ({posts}) => {
   const [message, setMessage] = useState('')
 
+
+  let logout = () => {
+    localStorage.clear()
+    window.location.href = '/login'
+  }
+
   useEffect(() => {
     if(localStorage.getItem('access_token')  === null) {
       window.location.href = '/login'
@@ -33,6 +39,9 @@ const HomePage = ({posts}) => {
       }) ()
     }
   }, [])
+
+
+
 
   return (
     <div>
@@ -151,7 +160,7 @@ const HomePage = ({posts}) => {
                       <a href="#">FAQs</a>
                       <a href="#">Blog</a>
                       <a href="#">Contact</a>
-                      <a href="#">Logout</a>
+                      <a onClick={logout} className='cursor-pointer'>Logout</a>
                     </div>
                   </div>
               </div>
