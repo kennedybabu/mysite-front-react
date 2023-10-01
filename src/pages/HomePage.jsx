@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Logo from '../assets/logo.svg'
 import {BsTextParagraph} from "react-icons/bs"
@@ -12,13 +12,32 @@ import {LuMessagesSquare} from "react-icons/lu"
 import {PiNewspaperLight} from "react-icons/pi"
 import Post from '../components/Post';
 import MemberWidget from '../components/MemberWidget';
+import axios from "axios"
 
 const HomePage = ({posts}) => {
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    if(localStorage.getItem('access_token')  === null) {
+      window.location.href = '/login'
+    } else {
+      (async () => {
+        try {
+          const {data} = await axios.get('/blog/', {
+            headers: {'Content-Type':'application/json'}
+          })
+          setMessage(data.mesage)
+        } catch(e) {
+          console.log('not auth')
+        }
+      }) ()
+    }
+  }, [])
+
   return (
     <div>
-          <div className="App">
+      <div className="App">
         <div className="container flex flex-row">
-
           <div className="sidebar min-w-[350px] h-full fixed left-0 top-0">
             <div className="flex flex-col w-full h-full">
               <div className="top grow-0 text-center h-[400px] pt-[50px] bg-[#383a45] relative w-full">
@@ -128,11 +147,11 @@ const HomePage = ({posts}) => {
                     <MemberWidget />
 
                     <div className='flex gap-2 text-[12px] items-center justify-between text-gray-400 my-7 child-hover:text-red-200'>
-                      <a href="#">Home</a>
                       <a href="#">About Us</a>
                       <a href="#">FAQs</a>
                       <a href="#">Blog</a>
                       <a href="#">Contact</a>
+                      <a href="#">Logout</a>
                     </div>
                   </div>
               </div>

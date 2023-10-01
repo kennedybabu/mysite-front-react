@@ -23,3 +23,13 @@ body {
   width: calc(100vw - 350px);
   margin-left: 350px;
 }
+
+
+#padd {
+  padding: 80px 50px 80px 50px;
+}
+
+
+.input-padding {
+  padding: 4px 16px 4px 8px;
+}

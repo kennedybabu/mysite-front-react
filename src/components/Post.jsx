@@ -95,7 +95,7 @@ const Post = ({post}) => {
                                 
                             </div>
                             <div className='w-full'>
-                                <input type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full' />
+                                <input type="text" className='border outline-none px-4 border-gray-100 mx-2 p-1 rounded-2xl w-full' />
                                 <div className='my-2 px-4'>
                                     <button className='w-[89px] h-[26px] bg-[#8224e3] text-stone-100 rounded-xl'>post</button> 
                                     <a href="#" onClick={commenting} className='text-[#8224e3] mx-3 hover:underline'>cancel</a>
