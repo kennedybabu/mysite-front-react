@@ -69,7 +69,7 @@ const MemberWidget = () => {
 
                     </div>
                     <div className='h-full mx-4 flex items-start justify-center flex-col'>
-                        <a href='#' className='text-sm font-bold hover:underline'>{user.username}</a>
+                        <a className='text-sm font-bold hover:underline'>{user.username}</a>
                         <small className='text-[12px] text-gray-400'>2 hours ago</small>
                     </div>
                 </div>               

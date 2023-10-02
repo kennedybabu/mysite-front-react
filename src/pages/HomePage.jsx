@@ -13,14 +13,30 @@ import {PiNewspaperLight} from "react-icons/pi"
 import Post from '../components/Post';
 import MemberWidget from '../components/MemberWidget';
 import axios from "axios"
+import { useJwt } from "react-jwt";
+// import { GetCurrentUser } from '../services/authServices'
+
 
 const HomePage = ({posts}) => {
-  const [message, setMessage] = useState('')
+  const {decodedToken, isExpired} = useJwt(localStorage.getItem('access_token'))
+  const userId = decodedToken?.user_id
 
+  const [message, setMessage] = useState('')
+  const [user, setUser] = useState(null)
+
+  const [body, setBody] = useState('')
+
+  console.log(body)
 
   let logout = () => {
     localStorage.clear()
     window.location.href = '/login'
+  }
+
+  let fetchUserDetails = async (user_id) => {
+    let response = await fetch(`/blog/users/${user_id}/`)
+    let data = await response.json()
+    setUser(data)
   }
 
   useEffect(() => {
@@ -28,6 +44,7 @@ const HomePage = ({posts}) => {
       window.location.href = '/login'
     } else {
       (async () => {
+
         try {
           const {data} = await axios.get('/blog/', {
             headers: {'Content-Type':'application/json'}
@@ -38,9 +55,31 @@ const HomePage = ({posts}) => {
         }
       }) ()
     }
+
+    
   }, [])
 
+  useEffect(()=> {
+    if(userId) {
+      fetchUserDetails(userId)
+    }
+  }, [userId])
 
+
+  let createPost = async () => {
+    let object = {
+      'author': userId,
+      'body': body
+    }
+    fetch('/blog/create/', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(object)
+    })
+    window.location.href = '/'
+  }
 
 
   return (
@@ -56,7 +95,7 @@ const HomePage = ({posts}) => {
                       <div className='h-[50px] my-3 outline outline-offset-3 outline-red-100 bg-red-200 mx-auto rounded-full aspect-square'>
 
                       </div>
-                      <h4 className='font-bold'>Rahmi Cooper</h4>
+                      <h4 className='font-bold'>{user?.username}</h4>
                       <small>Member</small>
                       <hr />
                       <div className='flex flex-row gap-5 mt-3 items-center justify-center'>
@@ -141,7 +180,8 @@ const HomePage = ({posts}) => {
                           <div className='h-[35px] aspect-square bg-red-100 rounded-full'>
                               
                           </div>
-                          <input type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full outline-none px-4' placeholder="What's new, Rahmi?" />
+                          <input onChange={(e) => setBody(e.target.value)} type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full outline-none px-4' placeholder="What's new, Rahmi?" />
+                          <button onClick={createPost} className='cursor-pointer px-[15px] shadow py-[7px] bg-[#8224e3] my-2 rounded-3xl text-[14px] text-white'>submit</button>
                       </div>
 
                       {/* post-lists */}
@@ -156,10 +196,10 @@ const HomePage = ({posts}) => {
                     <MemberWidget />
 
                     <div className='flex gap-2 text-[12px] items-center justify-between text-gray-400 my-7 child-hover:text-red-200'>
-                      <a href="#">About Us</a>
-                      <a href="#">FAQs</a>
-                      <a href="#">Blog</a>
-                      <a href="#">Contact</a>
+                      <a>About Us</a>
+                      <a>FAQs</a>
+                      <a>Blog</a>
+                      <a>Contact</a>
                       <a onClick={logout} className='cursor-pointer'>Logout</a>
                     </div>
                   </div>

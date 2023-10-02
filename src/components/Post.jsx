@@ -58,7 +58,7 @@ const Post = ({post}) => {
                         options ? (
                             <div className='w-44 bg-stone-100 rounded-lg transition border border-gray-100 shadow z-30 absolute -bottom-13 right-1'>
                                 <ul className='py-2 text-sm'>
-                                    <li><a href="#" className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Edit <CiEdit /></a></li>
+                                    <li><a className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Edit <CiEdit /></a></li>
                                     <li onClick={deletePost}><a className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Delete <AiOutlineDelete /></a></li>
                                 </ul>
                             </div>
@@ -98,7 +98,7 @@ const Post = ({post}) => {
                                 <input type="text" className='border outline-none px-4 border-gray-100 mx-2 p-1 rounded-2xl w-full' />
                                 <div className='my-2 px-4'>
                                     <button className='w-[89px] h-[26px] bg-[#8224e3] text-stone-100 rounded-xl'>post</button> 
-                                    <a href="#" onClick={commenting} className='text-[#8224e3] mx-3 hover:underline'>cancel</a>
+                                    <a onClick={commenting} className='text-[#8224e3] mx-3 hover:underline'>cancel</a>
                                 </div>
                             </div>
                         </div>

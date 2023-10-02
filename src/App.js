@@ -6,17 +6,17 @@ import HomePage from './pages/HomePage';
 
 
 function App() {
-let [posts, setPosts] = useState([])
+  let [posts, setPosts] = useState([])
 
-useEffect(() => {
-  fetchPosts()
-}, [])
+  useEffect(() => {
+    fetchPosts()
+  }, [])
 
-let fetchPosts = async() => {
-  let res = await fetch('/blog/')
-  let data = await res.json()
-  setPosts(data)
-}
+  let fetchPosts = async() => {
+    let res = await fetch('/blog/')
+    let data = await res.json()
+    setPosts(data)
+  }
   return (
       <div className='App'>
         <BrowserRouter>
@@ -27,10 +27,6 @@ let fetchPosts = async() => {
         </BrowserRouter>
       </div>
   )
-          
-
-
-
 }
 
 export default App;
