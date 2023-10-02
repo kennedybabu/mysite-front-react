@@ -17,7 +17,7 @@ import { useJwt } from "react-jwt";
 // import { GetCurrentUser } from '../services/authServices'
 
 
-const HomePage = ({posts}) => {
+const HomePage = () => {
   const {decodedToken, isExpired} = useJwt(localStorage.getItem('access_token'))
   const userId = decodedToken?.user_id
 
@@ -26,7 +26,18 @@ const HomePage = ({posts}) => {
 
   const [body, setBody] = useState('')
 
-  console.log(body)
+
+  let [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
+
+  let fetchPosts = async() => {
+    let res = await fetch('/blog/')
+    let data = await res.json()
+    setPosts(data)
+  }
 
   let logout = () => {
     localStorage.clear()
@@ -79,6 +90,18 @@ const HomePage = ({posts}) => {
       body: JSON.stringify(object)
     })
     window.location.href = '/'
+  }
+
+
+  const deletePost = (postId) => {
+    fetch(`/blog/posts/${postId}/delete/`, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type' : 'application/json'
+      }
+  }).then(() => {
+    setPosts(posts.filter(post => post.id !== postId))
+  })
   }
 
 
@@ -187,7 +210,7 @@ const HomePage = ({posts}) => {
                       {/* post-lists */}
                       <div className="mt-5 pt-5">
                         {posts.map((post, index) => (
-                            <Post key={index} post={post}/>
+                            <Post key={index} post={post} userId={userId} onDelete={() => deletePost(post.id)}/>
                         ))}                
                       </div>
                   </div>

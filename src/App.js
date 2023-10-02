@@ -6,22 +6,12 @@ import HomePage from './pages/HomePage';
 
 
 function App() {
-  let [posts, setPosts] = useState([])
 
-  useEffect(() => {
-    fetchPosts()
-  }, [])
-
-  let fetchPosts = async() => {
-    let res = await fetch('/blog/')
-    let data = await res.json()
-    setPosts(data)
-  }
   return (
       <div className='App'>
         <BrowserRouter>
           <Routes>
-            < Route path='/' element={<HomePage posts={posts} />} />
+            < Route path='/' element={<HomePage />} />
             < Route path='/login' element={<LoginPage />} />
           </Routes>
         </BrowserRouter>

@@ -8,7 +8,7 @@ import {CiEdit} from "react-icons/ci"
 
 
 
-const Post = ({post}) => {
+const Post = ({post, userId, onDelete}) => {
 
     let id = post.id    
 
@@ -30,18 +30,38 @@ const Post = ({post}) => {
 
     let deletePost = async () => {
         console.log(post)
-        fetch(`/posts/${id}/delete/`, {
+        fetch(`/blog/posts/${post.id}/delete/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type' : 'application/json'
             }
+        }).then(() => {
+            onDelete()
+            setOptions(!options)
+        }).catch((error) => {
+            console.log(error)
+        })
+        
+    }
+
+    const [comment, setComment] = useState('')
+
+    let createComment = async () => {
+        let body = {
+            "body": JSON.stringify(comment),
+            "author": userId,
+            "post": post.id,
+
+        }
+        fetch('/blog/comments/create/', {
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body : JSON.stringify(body)
         })
     }
 
-
-    function display(){
-        console.log(post)
-    }
 
   return (
     <div>
@@ -95,9 +115,9 @@ const Post = ({post}) => {
                                 
                             </div>
                             <div className='w-full'>
-                                <input type="text" className='border outline-none px-4 border-gray-100 mx-2 p-1 rounded-2xl w-full' />
+                                <input type="text" onChange={(e) => setComment(e.target.value)} className='border outline-none px-4 border-gray-100 mx-2 p-1 rounded-2xl w-full' />
                                 <div className='my-2 px-4'>
-                                    <button className='w-[89px] h-[26px] bg-[#8224e3] text-stone-100 rounded-xl'>post</button> 
+                                    <button onClick={createComment} className='w-[89px] h-[26px] bg-[#8224e3] text-stone-100 rounded-xl'>post</button> 
                                     <a onClick={commenting} className='text-[#8224e3] mx-3 hover:underline'>cancel</a>
                                 </div>
                             </div>

@@ -86,7 +86,7 @@ const LoginPage = () => {
                   </div>
                   <input type="password" required onChange={(e) => setPassword(e.target.value)}  className='input-padding border-none bg-gray-100 rounded-r-3xl rounded-l-xl outline-none p-1' placeholder='password' />
                 </div>
-                <button type='submit' className='px-[32px] shadow py-[7px] w-full bg-[#8224e3] my-2 rounded-3xl text-[14px] text-white'>Login to  your account</button>
+                <button type='submit' className='px-[32px] shadow py-[8px] w-full bg-[#8224e3] my-2 rounded-3xl text-[14px] text-white'>Login to  your account</button>
               </form>
            </div>
         </div>

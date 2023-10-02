@@ -1,5 +1,4 @@
 import React from 'react'
-import {useNavigate} from "react-router-dom"
 
 const Comment = ({comment}) => {
 
@@ -13,7 +12,7 @@ const Comment = ({comment}) => {
         window.location.reload()        
     }
 
- 
+
   return (
     <div>
         <div className='flex my-2 flex-row items-start max-w-[90%] mr-auto'>
