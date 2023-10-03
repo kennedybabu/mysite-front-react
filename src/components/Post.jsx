@@ -8,9 +8,7 @@ import {CiEdit} from "react-icons/ci"
 
 
 
-const Post = ({post, userId, onDelete}) => {
-
-    let id = post.id    
+const Post = ({post, userId, onDelete}) => {     
 
     let [isCommenting, setIsCommenting] = useState(false)
     let [options, setOptions] = useState(false)
@@ -48,7 +46,7 @@ const Post = ({post, userId, onDelete}) => {
 
     let createComment = async () => {
         let body = {
-            "body": JSON.stringify(comment),
+            "body": comment,
             "author": userId,
             "post": post.id,
 
@@ -60,6 +58,7 @@ const Post = ({post, userId, onDelete}) => {
             },
             body : JSON.stringify(body)
         })
+        window.location.href='/'
     }
 
 
@@ -78,8 +77,8 @@ const Post = ({post, userId, onDelete}) => {
                         options ? (
                             <div className='w-44 bg-stone-100 rounded-lg transition border border-gray-100 shadow z-30 absolute -bottom-13 right-1'>
                                 <ul className='py-2 text-sm'>
-                                    <li><a className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Edit <CiEdit /></a></li>
-                                    <li onClick={deletePost}><a className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Delete <AiOutlineDelete /></a></li>
+                                    <li><span className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Edit <CiEdit /></span></li>
+                                    <li onClick={deletePost}><span className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-300 dark:hover:text-black flex items-center justify-between'>Delete <AiOutlineDelete /></span></li>
                                 </ul>
                             </div>
                         ): null
