@@ -203,7 +203,7 @@ const HomePage = () => {
                           <div className='h-[35px] aspect-square bg-red-100 rounded-full'>
                               
                           </div>
-                          <input onChange={(e) => setBody(e.target.value)} type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full outline-none px-4' placeholder="What's new, Rahmi?" />
+                          <input onChange={(e) => setBody(e.target.value)} type="text" className='border border-gray-100 mx-2 p-1 rounded-2xl w-full outline-none px-4 text-[13px] py-2' placeholder="What's new, Rahmi?" />
                           <button onClick={createPost} className='cursor-pointer px-[15px] shadow py-[7px] bg-[#8224e3] my-2 rounded-3xl text-[14px] text-white'>submit</button>
                       </div>
 

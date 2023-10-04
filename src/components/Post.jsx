@@ -4,7 +4,7 @@ import {BiLike} from "react-icons/bi"
 import { formatDistanceToNow } from 'date-fns'
 import Comment from './Comment'
 import {CiEdit} from "react-icons/ci"
-
+import { useJwt } from 'react-jwt'
 
 
 
@@ -12,6 +12,8 @@ const Post = ({post, userId, onDelete}) => {
 
     let [isCommenting, setIsCommenting] = useState(false)
     let [options, setOptions] = useState(false)
+    let currentUser = useJwt(localStorage.getItem('access_token'))
+    let currentUserId = currentUser?.decodedToken?.user_id
 
     let commenting = () => {
         setIsCommenting(!isCommenting)
@@ -72,7 +74,8 @@ const Post = ({post, userId, onDelete}) => {
                     <p className='text-gray-400 text-[14px]'><span className='text-black font-bold'>Rahmi Cooper</span> posted an update</p>
                 </div>
                 <div className='relative'>
-                    <AiOutlineMore onClick={viewOptions}  className='relative text-gray-400 cursor-pointer'/>
+                    {currentUserId === post.author ? <AiOutlineMore onClick={viewOptions}  className='relative text-gray-400 cursor-pointer'/> : null
+ }
                     {
                         options ? (
                             <div className='w-44 bg-stone-100 rounded-lg transition border border-gray-100 shadow z-30 absolute -bottom-13 right-1'>
@@ -114,7 +117,7 @@ const Post = ({post, userId, onDelete}) => {
                                 
                             </div>
                             <div className='w-full'>
-                                <input type="text" onChange={(e) => setComment(e.target.value)} className='border outline-none px-4 border-gray-100 mx-2 p-1 rounded-2xl w-full' />
+                                <input type="text" onChange={(e) => setComment(e.target.value)} className='border outline-none px-4 border-gray-100 mx-2 p-1 rounded-2xl w-full px-4 text-[13px] py-2' />
                                 <div className='my-2 px-4'>
                                     <button onClick={createComment} className='w-[89px] h-[26px] bg-[#8224e3] text-stone-100 rounded-xl'>post</button> 
                                     <a onClick={commenting} className='text-[#8224e3] mx-3 hover:underline'>cancel</a>

@@ -4,6 +4,7 @@ import axios from "axios";
 import {BsLaptop, BsBriefcase,BsBasket} from "react-icons/bs"
 import {BiUser} from "react-icons/bi"
 import {FiKey} from "react-icons/fi"
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('')
@@ -67,7 +68,7 @@ const LoginPage = () => {
           </div>
         </div>
 
-        <div id="padd" className='flex flex-col text-center'>
+        <div id="padd" className='flex w-[375px] flex-col text-center'>
             <img src={Lg} alt="logo" className='mx-auto h-[60px] my-4 aspect-square' />
            <h3 className='font-bold text-[22px]'>welcome</h3>
            <small className='text-[14px] my-3 text[#626c72]'>Join gazillions of people online</small>
@@ -87,6 +88,7 @@ const LoginPage = () => {
                   <input type="password" required onChange={(e) => setPassword(e.target.value)}  className='input-padding border-none bg-gray-100 rounded-r-3xl rounded-l-xl outline-none p-1' placeholder='password' />
                 </div>
                 <button type='submit' className='px-[32px] shadow py-[8px] w-full bg-[#8224e3] my-2 rounded-3xl text-[14px] text-white'>Login to  your account</button>
+                <small className='text-center'>Don't have an account? <Link to={"/signup"}>signup</Link></small>
               </form>
            </div>
         </div>

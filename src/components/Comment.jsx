@@ -1,6 +1,10 @@
 import React from 'react'
+import { useJwt } from 'react-jwt'
 
 const Comment = ({comment}) => {
+
+    let currentUser = useJwt(localStorage.getItem('access_token'))
+    let currentUserId = currentUser?.decodedToken?.user_id
 
     let deleteComment = async() => {
         fetch(`/blog/comments/${comment.id}/delete/`, {
@@ -24,7 +28,7 @@ const Comment = ({comment}) => {
                     <small>{comment?.body}</small>
                 </div>
                 <div className='flex text-[12px] font-bold gap-4 my-1 pl-[15px]'>
-                    <a>Reply</a> <a className='cursor-pointer' onClick={deleteComment}>Delete</a>
+                    <a>Reply</a> {currentUserId === comment?.author ? <a className='cursor-pointer' onClick={deleteComment}>Delete</a> : null } 
                 </div>
             </div>
         </div>

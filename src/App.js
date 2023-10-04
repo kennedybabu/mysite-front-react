@@ -1,8 +1,8 @@
 import './App.css';
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import SignUp from './pages/SignUp';
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
           <Routes>
             < Route path='/' element={<HomePage />} />
             < Route path='/login' element={<LoginPage />} />
+            < Route path='/signup' element={<SignUp />} />
           </Routes>
         </BrowserRouter>
       </div>
