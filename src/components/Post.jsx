@@ -71,7 +71,7 @@ const Post = ({post, userId, onDelete}) => {
                 <div className="flex relative items-center">
                     <div className='absolute top-0 -left-11 h-[35px] cursor-pointer aspect-square bg-red-100 rounded-full'>                             
                     </div>
-                    <p className='text-gray-400 text-[14px]'><span className='text-black font-bold'>Rahmi Cooper</span> posted an update</p>
+                    <p className='text-gray-400 text-[14px]'><span className='text-black font-bold'>{post.author_username}</span> posted an update</p>
                 </div>
                 <div className='relative'>
                     {currentUserId === post.author ? <AiOutlineMore onClick={viewOptions}  className='relative text-gray-400 cursor-pointer'/> : null

@@ -37,6 +37,8 @@ const HomePage = () => {
     let res = await fetch('/blog/')
     let data = await res.json()
     setPosts(data)
+
+    console.log(posts)
   }
 
   let logout = () => {

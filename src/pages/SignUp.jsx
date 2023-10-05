@@ -5,6 +5,7 @@ import {FiKey} from "react-icons/fi"
 import Lg from "../../src/assets/lg.svg"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Video from "../assets/videos/bgvideo.mp4"
 
 const SignUp = () => {
     const [username, setUsername] = useState('')
@@ -35,10 +36,12 @@ const SignUp = () => {
     }
 
   return (
-    <div className='w-full h-screen flex items-center justify-center'>     
+    <div className='w-full h-screen flex items-center justify-center'>   
+      <video  src={Video} autoPlay loop muted/>  
+      <div className="overlay"></div>    
      
-    <div className="h-[520px] flex">
-      <div id='padd' className="w-[375px]  bg-[#8224E3] text-stone-100 h-full flex flex-col">
+    <div className="content z-40 mx-auto h-[520px] flex">
+      <div id='padd' className="w-[375px] bg-opacity-60  bg-[#8224E3] text-stone-100 h-full flex flex-col">
         <h3 className='text-[22px] font-bold'>Join the club</h3>
         <p className='font-medium text-[14px]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi.</p>
 
@@ -76,7 +79,7 @@ const SignUp = () => {
         </div>
       </div>
 
-      <div id="padd" className='flex flex-col text-center'>
+      <div id="padd" className='flex flex-col bg-white text-center'>
           <img src={Lg} alt="logo" className='mx-auto h-[60px] my-4 aspect-square' />
          <h3 className='font-bold text-[22px]'>welcome</h3>
          <small className='text-[14px] my-3 text[#626c72]'>Join gazillions of people online</small>
@@ -102,7 +105,7 @@ const SignUp = () => {
                 <input type="password" required onChange={(e) => setPassword(e.target.value)}  className='input-padding border-none bg-gray-100 rounded-r-3xl rounded-l-xl outline-none p-1' placeholder='password' />
               </div>
               <button type='submit' className='px-[32px] shadow py-[8px] w-full bg-[#8224e3] my-2 rounded-3xl text-[14px] text-white'>signup</button>
-              <small className='text-center'>Have an account? <Link to={"/login"} >login</Link></small>
+              <small className='text-center text-[#8224E3]'>Have an account? <Link to={"/login"} >login</Link></small>
             </form>
          </div>
       </div>
